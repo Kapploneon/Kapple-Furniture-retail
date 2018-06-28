@@ -8,10 +8,10 @@
   "description": "JavaScript development environment Pluralsight course by Cory House",
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel open:src lint:watch test:watch",
+    "start": "npm-run-all --parallel open:src test:watch",
     "start_web": "webpack-dev-server --mode development --open --hot",
     "open:src": "nodemon buildScripts/srcServer.js --exec babel-node",
-    "lint": "esw webpack.config.* src buildScripts --color",
+    "lint": "eslint buildScripts/srcServer.js",
     "lint:watch": "npm run lint -- --watch",
     "security-check": "nsp check",
     "localtunnel": "lt --port 3000",
@@ -25,14 +25,6 @@
   "license": "MIT",
   "dependencies": {
     "ajv": "^6.5.1",
-    "concat-stream": "1.5.2",
-    "fs": "0.0.1-security",
-    "module": "^1.2.5",
-    "net": "^1.0.2",
-    "webpack-dev-server": "^3.1.4",
-    "whatwg-fetch": "^2.0.4"
-  },
-  "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
@@ -43,6 +35,7 @@
     "chalk": "^2.4.1",
     "cheerio": "0.22.0",
     "compression": "^1.7.2",
+    "concat-stream": "1.5.2",
     "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
@@ -52,6 +45,8 @@
     "eslint-plugin-react": "^7.10.0",
     "eslint-watch": "^3.1.5",
     "express": "^4.16.3",
+    "fs": "0.0.1-security",
+    "heroku": "^7.5.2",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "jsdom": "^11.11.0",
@@ -59,6 +54,8 @@
     "json-server": "^0.14.0",
     "localtunnel": "1.9.0",
     "mocha": "^5.2.0",
+    "module": "^1.2.5",
+    "net": "^1.0.2",
     "nock": "^9.3.3",
     "nodemon": "^1.17.5",
     "npm-run-all": "^4.1.3",
@@ -72,7 +69,18 @@
     "webpack": "^4.12.1",
     "webpack-cli": "^3.0.8",
     "webpack-dev-middleware": "^3.1.3",
+    "webpack-dev-server": "^3.1.4",
     "webpack-hot-middleware": "^2.22.2",
+    "whatwg-fetch": "^2.0.4"
+  },
+  "devDependencies": {
     "webpack-md5-hash": "0.0.6"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      "node_modules/**/node_modules"
+    ],
+    "delay": "2500"
   }
 }

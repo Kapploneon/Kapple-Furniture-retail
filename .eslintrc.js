@@ -1,7 +1,7 @@
 module.exports = {
     "extends": "airbnb",
     rules: {
-        'no-console': 'off',
-        'comma-dangle': 0,
-    }
+      'no-console': 'off',
+      'comma-dangle': 0,
+  }
 };
